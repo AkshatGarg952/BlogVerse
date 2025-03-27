@@ -8,6 +8,9 @@ import expressLayouts from 'express-ejs-layouts';
 import ejsLayouts from "express-ejs-layouts";
 import path from 'path'
 import cookieParser from "cookie-parser";
+import dotenv from 'dotenv';
+
+dotenv.config();
 const app =  express();
 // EJS layouts
 
@@ -64,7 +67,7 @@ app.get('/error4', (req, res)=>{
 
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT_NO, () => {
 connectDB();
 console.log('Listening on port 3000')
 });
