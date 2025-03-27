@@ -14,6 +14,9 @@ dotenv.config();
 const app =  express();
 // EJS layouts
 
+app.use('/public', express.static('public'));
+
+
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true })); 
