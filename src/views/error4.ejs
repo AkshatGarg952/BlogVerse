@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogVerse - Login Error</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="min-h-screen bg-gradient-to-br from-purple-400 via-purple-300 to-white flex items-center justify-center">
+        <div class="container mx-auto px-4 text-center relative">
+            <div class="absolute top-10 left-10 animate-float text-4xl">🔒</div>
+            <div class="absolute bottom-10 right-10 animate-float text-4xl">⚠️</div>
+            
+            <div class="bg-white bg-opacity-20 backdrop-blur-lg rounded-2xl p-12 shadow-2xl max-w-2xl mx-auto">
+                <h1 class="text-5xl font-bold text-white mb-6">Login Error</h1>
+                
+                <div class="text-left bg-white bg-opacity-10 rounded-xl p-6 mb-8">
+                    <h2 class="text-2xl text-white mb-4">Incorrect Password</h2>
+                    
+                    <div class="space-y-4 text-white text-lg">
+                        <p>The password you entered is incorrect. Please check the following:</p>
+                        <ul class="list-disc list-inside">
+                            
+                            <li>Verify that you're using the correct email</li>
+                            <li>Double-check for any typing mistakes</li>
+                            
+                        </ul>
+                        
+                    </div>
+                </div>
+
+                <div class="flex justify-center">
+                    <a href="/" class="inline-block bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-8 rounded-full text-xl transition duration-300 transform hover:scale-105">
+                        Login Again
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
