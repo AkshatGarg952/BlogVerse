@@ -5,6 +5,7 @@ dotenv.config();
 const connectDB = async () => {
     try {
       await mongoose.connect(process.env.DATABASE_URL, {
+          serverSelectionTimeoutMS: 30000,
 
       });
       console.log('MongoDB connected');
