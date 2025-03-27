@@ -26,8 +26,12 @@ export default class userC{
         res.redirect(`/main?userId=${user._id}&name=${user.name}`)
         }
         catch(err){
-          console.error("Error registering user:", err);
+          if(err.message=== "User already exists!"){
           res.redirect('/error2');
+          }
+          else{
+            res.redirect('/error3');
+          }
         }
     }
 
@@ -45,8 +49,13 @@ export default class userC{
       res.redirect(`/main?userId=${user._id}&name=${user.name}`)
         }
         catch(err){
-            console.log("Cannot find the user:", err);
-            res.redirect('/error1');
+            if(err.message==="User not found! Please register first."){
+                res.redirect('/error1');
+            }
+            else{
+              res.redirect('/error4');
+            }
+           
         }
     }
 
