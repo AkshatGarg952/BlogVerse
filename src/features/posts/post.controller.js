@@ -9,7 +9,7 @@ export default class postC{
 
     async add(req, res){
         const {title,content,tags} = req.body;
-        const imageUrl = `http://localhost:3000/public/images/${req.file.filename}`;
+        const imageUrl = `https://blogverse-ye3t.onrender.com/public/images/${req.file.filename}`;
         const blog = {
             title:title,
             content:content,
@@ -54,7 +54,7 @@ export default class postC{
                 tags:tags
             }
             if(req.file){
-                const imageUrl = `http://localhost:3000/public/images/${req.file.filename}`;
+                const imageUrl = `https://blogverse-ye3t.onrender.com/public/images/${req.file.filename}`;
                 blog.imageUrl = imageUrl
             }
 
