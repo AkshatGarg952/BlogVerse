@@ -11,16 +11,16 @@ const postSchema = new mongoose.Schema({
     required: true,
     },
 
-    imageUrl: {
-        type: String,
-        required: true, 
-        validate: {
-            validator: function (v) {
-                return /^http:\/\/localhost:3000\/public\/images\/.+$/.test(v);
-            },
-            message: "Invalid image URL format"
-        }
-    },
+   imageUrl: {
+    type: String,
+    required: true,
+    validate: {
+        validator: function (v) {
+            return /^https?:\/\/(localhost:3000|blogverse-ye3t\.onrender\.com)\/public\/images\/.+$/.test(v);
+        },
+        message: "Invalid image URL format"
+    }
+},
     
     author:{ 
     type: mongoose.Schema.Types.ObjectId, 
