@@ -28,7 +28,8 @@ app.use(ejsLayouts)
 
 app.use(expressLayouts)
 
-app.use("/public/images", express.static("public/images"));
+app.use("/public", express.static(path.join(path.resolve(), "public")));
+
 app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/comments", commentRouter);
