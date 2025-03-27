@@ -13,7 +13,11 @@
         }
         .animate-float { animation: float 3s ease-in-out infinite; }
         .card-hover { transition: all 0.3s ease; }
-        @media (hover: hover) { .card-hover:hover { transform: translateY(-5px) scale(1.02); } }
+        @media (hover: hover) { 
+            .card-hover:hover { 
+                transform: translateY(-5px) scale(1.02); 
+            } 
+        }
         .gradient-text {
             background: linear-gradient(135deg, #4F46E5 0%, #9333EA 100%);
             -webkit-background-clip: text;
@@ -31,33 +35,52 @@
 </head>
 <body class="min-h-screen bg-gradient-to-br from-purple-100 via-purple-50 to-white">
     <!-- Navbar -->
-    <nav class="glass-effect sticky top-0 z-50 border-b border-purple-100 h-24 flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="flex justify-between h-24 items-center">
-                <div class="flex items-center space-x-2">
-                    <span class="w-8 h-8 text-purple-600 animate-float">✨</span>
-                    <h1 class="text-4xl font-bold gradient-text whitespace-nowrap leading-none"><a>BlogVerse</a></h1>
+    <nav class="glass-effect sticky top-0 z-50 border-b border-purple-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center py-4">
+                <!-- Logo Section -->
+                <div class="flex items-center justify-between w-full md:w-auto">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-8 h-8 text-purple-600 animate-float">✨</span>
+                        <h1 class="text-4xl font-bold gradient-text whitespace-nowrap leading-none">
+                            <a href="#">BlogVerse</a>
+                        </h1>
+                    </div>
+                    <!-- Mobile Menu Toggle -->
+                    <button id="menu-btn" class="md:hidden p-2.5 text-gray-700 text-lg">
+                        ☰
+                    </button>
                 </div>
-                <!-- Mobile Menu Button -->
-                <button id="menu-btn" class="md:hidden p-2.5 text-gray-700 text-lg">☰</button>
-                <!-- Desktop Menu -->
-                <div id="menu" class="hidden md:flex items-center space-x-5">
-                    <a href="/main3?userId=<%= userId %>" class="px-6 py-2 text-base text-white bg-purple-600 rounded-full">All Blogs</a>
-                    <a href="/api/posts/getAllpbyUser/<%=userId%>" class="px-6 py-2 text-base text-gray-700 bg-white rounded-full">My Blogs</a>
-                    <a href="/api/posts/add/<%=userId %>" class="px-6 py-2 text-base text-white bg-purple-600 rounded-full">Create a New Blog</a>
-                    
-                    <a href="/api/users/logout" class="px-6 py-2 text-base text-gray-700 bg-white rounded-full">Logout</a>
+
+                <!-- Navigation Links -->
+                <div id="menu" class="w-full md:w-auto hidden md:block">
+                    <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-5 items-center">
+                        <a href="/main3?userId=<%= userId %>" class="w-full md:w-auto text-center px-6 py-2 text-base text-white bg-purple-600 rounded-full">
+                            All Blogs
+                        </a>
+                        <a href="/api/posts/getAllpbyUser/<%=userId%>" class="w-full md:w-auto text-center px-6 py-2 text-base text-gray-700 bg-white rounded-full">
+                            My Blogs
+                        </a>
+                        <a href="/api/posts/add/<%=userId %>" class="w-full md:w-auto text-center px-6 py-2 text-base text-white bg-purple-600 rounded-full">
+                            Create a New Blog
+                        </a>
+                        <a href="/api/users/logout" class="w-full md:w-auto text-center px-6 py-2 text-base text-gray-700 bg-white rounded-full">
+                            Logout
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
+
     <!-- Blog Content -->
-   <%- body %>
+    <%- body %>
+
     <script>
         document.getElementById("menu-btn").addEventListener("click", function() {
-            document.getElementById("menu").classList.toggle("hidden");
+            const menu = document.getElementById("menu");
+            menu.classList.toggle("hidden");
         });
     </script>
 </body>
 </html>
-
