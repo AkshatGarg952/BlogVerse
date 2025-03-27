@@ -52,6 +52,13 @@ app.get('/error2', (req, res)=>{
     res.render('error2',  { layout: false });
 })
 
+app.get('/error3', (req, res)=>{
+    res.render('error3',  { layout: false });
+})
+app.get('/error4', (req, res)=>{
+    res.render('error4',  { layout: false });
+})
+
 
 
 
