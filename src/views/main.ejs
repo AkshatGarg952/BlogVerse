@@ -28,7 +28,7 @@
 
 <script>
     async function fetchallPosts(){
-        const Url =  `http://localhost:3000/api/posts/getAll/<%=userId %>`;
+        const Url =  `https://blogverse-ye3t.onrender.com/api/posts/getAll/<%=userId %>`;
         try{
             const response = await fetch(Url, {
             method: "GET",
