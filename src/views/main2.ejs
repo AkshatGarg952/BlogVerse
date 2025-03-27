@@ -27,7 +27,7 @@
 
 <script>
     async function fetchallUsersPosts(userId){
-        const Url =  `http://localhost:3000/api/posts/getAllbyUser/${userId}`;
+        const Url =  `https://blogverse-ye3t.onrender.com/api/posts/getAllbyUser/${userId}`;
         try{
             const response = await fetch(Url, {
             method: "GET",
