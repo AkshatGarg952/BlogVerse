@@ -630,7 +630,7 @@
                     
                 </form>
                 <div class="login-link">
-                    Already have an account? <button onclick="showlogin()">Login</button>
+                    Already have an account? <a href="/" class="login-redirect">Login</a>
                 </div>
             </div>
         </div>
@@ -654,7 +654,7 @@
                     <button type="submit" class="register-btn">Login</button>
                 </form>
                 <div class="login-link">
-                    Do not have an account? <button onclick="showregister()">Register</button>
+                    Do not have an account? <a href="/" class="login-redirect">Register</a>
                 </div>
             </div>
         </div>
@@ -747,35 +747,62 @@
     
 
         function showLogin() {
-            document.getElementById("login-modal").style.display = "block";
-            document.querySelector(".hero").classList.add("blur");
+    document.getElementById("login-modal").style.display = "block";
+    document.querySelector(".hero").classList.add("blur");
+    // Add event listener to close modal when clicking outside
+    document.addEventListener('click', handleOutsideClick);
+}
+
+function hideLogin() {
+    document.getElementById("login-modal").style.display = "none";
+    document.querySelector(".hero").classList.remove("blur");
+    // Remove the event listener
+    document.removeEventListener('click', handleOutsideClick);
+}
+
+function showRegister() {
+    document.getElementById("register-modal").style.display = "block";
+    document.querySelector(".hero").classList.add("blur");
+    // Add event listener to close modal when clicking outside
+    document.addEventListener('click', handleOutsideClick);
+}
+
+function hideRegister() {
+    document.getElementById("register-modal").style.display = "none";
+    document.querySelector(".hero").classList.remove("blur");
+    // Remove the event listener
+    document.removeEventListener('click', handleOutsideClick);
+}
+
+function handleOutsideClick(event) {
+    const loginModal = document.getElementById("login-modal");
+    const registerModal = document.getElementById("register-modal");
+    
+    // Check if the click is outside both modals
+    if (loginModal.style.display === "block") {
+        if (!loginModal.querySelector(".form-card").contains(event.target) &&
+            !event.target.closest(".login")) {
+            hideLogin();
         }
-
-        function hideLogin() {
-            document.getElementById("login-modal").style.display = "none";
-            document.querySelector(".hero").classList.remove("blur");
-        }
-
-        function showRegister() {
-            document.getElementById("register-modal").style.display = "block";
-            document.querySelector(".hero").classList.add("blur");
-        }
-
-        function hideRegister() {
-            document.getElementById("register-modal").style.display = "none";
-            document.querySelector(".hero").classList.remove("blur");
-        }
-
-
-        function showlogin(){
+    }
+    
+    if (registerModal.style.display === "block") {
+        if (!registerModal.querySelector(".form-card").contains(event.target) &&
+            !event.target.closest(".register")) {
             hideRegister();
-            showLogin();
         }
+    }
+}
 
-        function showregister(){
-         hideLogin();
-         showRegister();
-        }
+function showregister() {
+    hideLogin();  
+    showRegister();
+}
+
+function showlogin() {
+    hideRegister(); 
+    showLogin();
+}
    
         // Animation for features
         // Scroll Control Variables
