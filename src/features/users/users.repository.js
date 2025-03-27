@@ -5,7 +5,7 @@ export default class UserR{
     async register (user){
         const old = await User.findOne({email:user.email});
         if(old){
-            throw new Error("User alreadye exists!");
+            throw new Error("User already exists!");
         }
        const newUser = new User({
            name:user.name,
