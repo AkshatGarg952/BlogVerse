@@ -1,0 +1,23 @@
+<div class="register-form-container">
+    <h2>Register</h2>
+    <form action="/api/users/register" method="POST">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+    <div class="form-footer">
+        <p>Already registered? <a href="/api/users/login">Login</a></p>
+    </div>
+</div>

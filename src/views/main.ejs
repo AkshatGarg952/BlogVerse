@@ -1,0 +1,94 @@
+<style>
+    @keyframes fadeInDown {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in-down {
+        animation: fadeInDown 1s ease-out forwards;
+    }
+</style>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-4xl font-bold text-purple-700 mb-8 text-center animate-fade-in-down">
+        All Blogs
+    </h1>
+    <div id = "allPosts" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+       
+    </div>
+</main>
+
+
+
+
+<script>
+    async function fetchallPosts(){
+        const Url =  `http://localhost:3000/api/posts/getAll/<%=userId %>`;
+        try{
+            const response = await fetch(Url, {
+            method: "GET",
+            credentials: "include", 
+        });
+          if(!response.ok){
+            throw new Error('No pots found');
+          }
+
+          const container = document.getElementById("allPosts");
+            container.innerHTML = ""; // Clear existing content
+          const posts = await response.json();
+
+          posts.forEach(post => {
+                // Create the article element
+                const article = document.createElement("article");
+                article.className = "bg-white rounded-2xl blog-card-shadow overflow-hidden card-hover";
+
+                // Create image element
+                const img = document.createElement("img");
+                img.src = post.imageUrl;
+                img.alt = "Blog Image";
+                img.className = "w-full h-32 sm:h-48 object-cover";
+
+                // Create the div for text content
+                const div = document.createElement("div");
+                div.className = "p-6";
+
+                // Create the title
+                const title = document.createElement("h2");
+                title.className = "text-xl font-semibold text-gray-900 mb-3";
+                
+                const anchor = document.createElement("a");
+                anchor.href = `/api/posts/geet/${post._id}`;  
+                anchor.innerText = post.title;
+                anchor.className = "text-purple-600 hover:underline"; 
+
+                
+
+                // Append elements
+                title.appendChild(anchor);
+                div.appendChild(title);
+                article.appendChild(img);
+                article.appendChild(div);
+                container.appendChild(article);
+            });
+                  
+        }
+        catch(err){
+           alert(err.message);
+        }
+    }
+    
+
+    document.addEventListener("DOMContentLoaded", () => {
+        fetchallPosts();
+    });
+
+
+
+
+</script>
+

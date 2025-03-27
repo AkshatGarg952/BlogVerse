@@ -1,0 +1,229 @@
+<div class="container">
+    <div class="main-content">
+        <h2>Update Blog</h2>
+
+        <% if (blog) { %>
+
+        <form action="/api/posts/postupdate/<%=blog._id%>"  method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" value="<%= blog.title %>">
+            </div>
+
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea id="content" name="content" ><%= blog.content %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="thumbnail">Thumbnail Image</label>
+                <input type="file" id="thumbnail" name="thumbnail" accept="image/*" >
+
+                <% if (blog.imageUrl) { %>
+                    <p>Current Thumbnail: <img src="<%= blog.imageUrl %>" alt="Current Thumbnail" style="max-width: 100px;"></p>
+                <% } %>
+            </div>
+
+            <div class="form-group tag-section">
+                <label>Tags</label>
+                <div class="tag-input-container">
+                    <% const allTags = ["GENERAL", "WORLD", "BUSINESS", "TECHNOLOGY", "ENTERTAINMENT", "SPORTS", "HEALTH", "SCIENCE", "OTHERS"]; %>
+                        <% allTags.forEach((tag) => { %>
+                            <label>
+                                <input type="checkbox" name="tags" value="<%= tag %>" <%= blog.tags.includes(tag) ? 'checked' : '' %>>
+                                <%= tag %>
+                            </label>
+                        <% }); %>
+
+
+                </div>
+
+            </div>
+
+            <input type="hidden" name="tags" id="hiddenTags">
+
+            <button type="submit" class="create-post-btnn">Submit Post</button>
+        </form>
+        <% } else { %>
+            <p>Blog post not found.</p>
+        <% } %>
+
+    </div>
+</div>
+
+<style>
+   
+    .container {
+        font-family: 'Arial', sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f4f6f9;
+        min-height: 100vh;
+
+        display: flex; /* Enable flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin-top:35px;
+    }
+
+    .main-content {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+
+        margin: 0 auto; 
+    }
+
+    .main-content h2 {
+        color: #2c3e50;
+        font-size: 2rem;
+        margin-bottom: 25px;
+        border-bottom: 3px solid #9333ea;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #34495e;
+        font-weight: bold;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #bdc3c7;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #9333ea;
+        box-shadow: 0 0 5px rgba(147, 51, 234, 0.6);
+    }
+
+    .form-group textarea {
+        resize: vertical;
+        min-height: 200px;
+    }
+
+    .form-group input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px dashed #bdc3c7;
+        border-radius: 6px;
+    }
+
+    .tag-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tag-input-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        background-color: #f1f4f8;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .tag-input {
+        flex-grow: 1;
+        padding: 8px;
+        border: 1px solid #bdc3c7;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+
+    .tag-groups {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .tag-group {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .tag-group-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #2c3e50;
+    }
+
+    .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .tag {
+        background-color: #9333ea;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 0.9rem;
+    }
+
+    .tag-remove {
+        cursor: pointer;
+        color: white;
+        opacity: 0.7;
+    }
+
+    .tag-remove:hover {
+        opacity: 1;
+    }
+
+    .create-post-btnn {
+        width: 100%;
+        padding: 12px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .create-post-btnn:hover {
+        background-color: #27ae60;
+    }
+
+    @media screen and (max-width: 600px) {
+        .container {
+            padding: 10px;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .main-content h2 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
