@@ -1,21 +1,24 @@
+import 'dotenv/config';
+
 import multer from 'multer';
-import fs from 'fs';
-import path from 'path';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
+import { v2 as cloudinary } from 'cloudinary';
 
-const uploadPath = path.join(process.cwd(), 'public', 'images');
 
-if (!fs.existsSync(uploadPath)) {
-    fs.mkdirSync(uploadPath, { recursive: true });
-}
-
-const storageConfig = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, uploadPath);
-    },
-    filename: (req, file, cb) => {
-        const uniqueName = Date.now() + '-' + file.originalname;
-        cb(null, uniqueName);
-    }
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-export const uploadFile = multer({ storage: storageConfig });
+// 🔹 Configure Multer to Use Cloudinary
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'blog-images', // Change this to any folder name you want
+    allowed_formats: ['jpg', 'png', 'jpeg']
+  }
+});
+export const upload = multer({ storage });
+
+
