@@ -1,7 +1,7 @@
 import express from "express";
 import postC from "./post.controller.js";
 import jwtAuth from "../../middleware/jwt.middleware.js";
-import {uploadFile} from "../../middleware/multer.middleware.js";
+import {upload} from "../../middleware/multer.middleware.js";
 
 const postRouter = express.Router();
 const postController = new postC();
@@ -10,14 +10,14 @@ postRouter.get("/add/:id", jwtAuth, (req,res)=>{
     postController.getadd(req,res);
 });
 
-postRouter.post("/add/:id",jwtAuth, uploadFile.single('thumbnail'), (req,res)=>{
+postRouter.post("/add/:id",jwtAuth, upload.single('thumbnail'), (req,res)=>{
     postController.add(req,res);
 });
 postRouter.get("/update/:id",jwtAuth, (req,res)=>{
     postController.getupdate(req,res);
 });
 
-postRouter.post("/postupdate/:id",jwtAuth, uploadFile.single('thumbnail'), (req,res)=>{
+postRouter.post("/postupdate/:id",jwtAuth, upload.single('thumbnail'), (req,res)=>{
         postController.update(req, res);
 });
 
