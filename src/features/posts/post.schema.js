@@ -12,15 +12,15 @@ const postSchema = new mongoose.Schema({
     },
 
    imageUrl: {
-    type: String,
-    required: true,
-    validate: {
-        validator: function (v) {
-            return /^https?:\/\/(localhost:3000|blogverse-ye3t\.onrender\.com)\/public\/images\/.+$/.test(v);
-        },
-        message: "Invalid image URL format"
-    }
-},
+        type: String,
+        required: true,
+        validate: {
+            validator: function (v) {
+                return /^https?:\/\/res\.cloudinary\.com\/[a-zA-Z0-9_-]+\/image\/upload\/.+$/.test(v);
+            },
+            message: "Invalid Cloudinary image URL format"
+        }
+    },
     
     author:{ 
     type: mongoose.Schema.Types.ObjectId, 
