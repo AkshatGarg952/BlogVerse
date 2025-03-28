@@ -9,7 +9,7 @@ export default class postC{
 
     async add(req, res){
         const {title,content,tags} = req.body;
-        const imageUrl = `https://blogverse-ye3t.onrender.com/public/images/${req.file.filename}`;
+        const imageUrl = req.file.path;
         const blog = {
             title:title,
             content:content,
